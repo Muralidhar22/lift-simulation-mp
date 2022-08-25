@@ -19,3 +19,10 @@ Create a web app where you can simulate lift mechanics for a client
    - Lift moving at 2s per floor
    - Lift stopping at every floor where it was called
    - Mobile friendly design
+
+Milestone 1 & 2 completed : [REPO](https://github.com/Muralidhar22/lift-simulation)
+
+  - Added backend, multiple clients can join and operate at the same time, syncing the lift calls and state on the application using [Socket.io](https://socket.io/docs/v4/)
+  - Users connected count
+  - Resets to default value when new a new user connects
+
