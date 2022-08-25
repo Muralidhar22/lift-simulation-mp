@@ -13,7 +13,7 @@ const io = new Server(server)
 const PORT = process.env.PORT || 8080
 let clientCount = 0;
 
-app.use(express.static(`${__dirname}/../client`));
+app.use(express.static(`${__dirname}/./client`));
 
 const newConnection = () => {
         io.emit('newClient',"new client joined...")
@@ -47,5 +47,5 @@ server.on('error',(err) => {
 })
 // port
 server.listen(PORT,() => {
-    console.log('server is ready')
+    console.log(`${PORT} server is ready`)
 })
