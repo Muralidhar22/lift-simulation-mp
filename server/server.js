@@ -10,10 +10,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server)
+const PORT = process.env.PORT || 8080
 let clientCount = 0;
 
 app.use(express.static(`${__dirname}/../client`));
-
 
 const newConnection = () => {
         io.emit('newClient',"new client joined...")
@@ -46,6 +46,6 @@ server.on('error',(err) => {
     console.error(err)
 })
 // port
-server.listen(8080,() => {
+server.listen(PORT,() => {
     console.log('server is ready')
 })
