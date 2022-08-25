@@ -24,5 +24,5 @@ Milestone 1 & 2 completed : [REPO](https://github.com/Muralidhar22/lift-simulati
 
   - Added backend, multiple clients can join and operate at the same time, syncing the lift calls and state on the application using [Socket.io](https://socket.io/docs/v4/)
   - Users connected count
-  - Resets to default value when new a new user connects
+  - Resets to default value when a new user connects
 
