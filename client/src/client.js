@@ -10,7 +10,6 @@ const usersCount = document.querySelector(".users-count")
 
 sock.emit('newClient',"new client joined....")
 sock.on('newClient',()=>{
-    document.querySelector(".alert-msg-container").classList.add("active")
     console.log("hey")
     setTimeout(() =>{
         document.querySelector(".alert-msg-container").classList.remove("active")
@@ -98,13 +97,30 @@ function addLiftsAndFloors(nof,nol){
 //Event listener for generate
 inputForm.addEventListener("submit",(event) => {
         event.preventDefault()
-        if(Number(event.target[0].value) <= 0 || Number(event.target[0].value) <= 0){
+        const numberOfFloors = Number(event.target[0].value)
+        const numberOfLifts = Number(event.target[1].value) 
+        if(numberOfFloors <= 0 || numberOfLifts <= 0){
             event.target[0].value = ''; event.target[1].value = ''
             alert("Please enter valid number of lifts/floors")
            }
-        else{
-            sock.emit('liftGenerator',[ event.target[0].value, event.target[1].value])
+        if(numberOfFloors > 25) {
+            event.target[0].value = ''; event.target[1].value = ''
+            alert("Floors cannot be more than 25")
         }
+        else{
+            if(screen.width <= 550 && numberOfLifts <= 3) sock.emit('liftGenerator',[ event.target[0].value, event.target[1].value])
+            else if(screen.width <= 1150 && screen.width > 550 && numberOfLifts <= 5) sock.emit('liftGenerator',[ event.target[0].value, event.target[1].value])
+            else if(screen.width > 1150 && numberOfLifts <= 10) sock.emit('liftGenerator',[ event.target[0].value, event.target[1].value])
+            else if(screen.width > 1440 && numberOfLifts <= 25) sock.emit('liftGenerator',[ event.target[0].value, event.target[1].value])
+            else{
+                document.querySelector(".generate-lift-btn").textContent = "Maximum lifts exceeded"
+            }
+            // sock.emit('liftGenerator',[ event.target[0].value, event.target[1].value])
+        }
+})
+
+document.querySelector('#no-of-lifts').addEventListener("focus",()=>{
+    document.querySelector(".generate-lift-btn").textContent = "generate"
 })
 
 function liftCallHandler(target,floor){
